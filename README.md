@@ -5,13 +5,9 @@
 # 安装
 
 ```
-yarn install
-```
-
-# 打包
-
-```
-yarn build
+yarn add responsive-storage
+or
+npm install responsive-storage
 ```
 
 # 使用方法
