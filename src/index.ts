@@ -44,7 +44,7 @@ export default class Storage implements ProxyStorage {
     if (Object.prototype.hasOwnProperty.call(window.localStorage, lsKey)) {
       let val: any = window.localStorage.getItem(lsKey);
       try {
-        val = JSON.parse(JSON.stringify(val));
+        val = JSON.parse(val);
       } catch (error) {
         console.log(error, val);
       }
@@ -145,9 +145,9 @@ export default class Storage implements ProxyStorage {
    */
 
   public get(key: string) {
-    let val = JSON.parse(window.localStorage.getItem(this._getKey(key)));
+    let val = window.localStorage.getItem(this._getKey(key));
     try {
-      val = val;
+      val = JSON.parse(val);
     } catch (e) {
       warn(e);
     }
