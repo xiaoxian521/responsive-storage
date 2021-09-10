@@ -1,7 +1,7 @@
 import { reactive, warn } from "vue";
 import type { App } from "vue";
 
-declare interface ProxyStorage {
+export declare interface ProxyStorage {
   get(key: string): unknown;
   set(Key: string, value: string): void;
   remove(key: string): void;
