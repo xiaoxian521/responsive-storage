@@ -3,9 +3,15 @@
   "version": "1.0.4",
   "description": "基于Vue3.0的响应式本地存储",
   "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "dev": "rm -rf dist && rollup -w -c ./build/rollup.config.dev.js",
-    "build": "rm -rf dist && rollup -c ./build/rollup.config.prod.js"
+    "build": "rm -rf dist && rollup -c ./build/rollup.config.prod.js && npm run build-types",
+    "build-types": "tsc -d --declarationDir ./dist/types"
   },
   "keywords": [
     "Vue3.0",

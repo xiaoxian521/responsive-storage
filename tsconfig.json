@@ -3,7 +3,7 @@
     "module": "es6",
     "moduleResolution": "node",
     "pretty": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "strict": false,
     "target": "es5",
     "declaration": true,
@@ -19,8 +19,12 @@
     "baseUrl": ".",
     "allowJs": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": {
+      "*": ["types/*"]
+    }
   },
   "types": ["node"],
+  "include": ["src/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
