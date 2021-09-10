@@ -15,7 +15,7 @@ export default class Storage implements ProxyStorage {
   public storage: object = {};
 
   // 获取key值
-  private _getKey = (key: string) => this.nameSpace + key;
+  public _getKey = (key: string) => this.nameSpace + key;
 
   // 存储key带responsive的全部清空，恢复初始化状态，防止恶意串改
   static clearAll(nameSpace: string = "responsive", options: object) {
