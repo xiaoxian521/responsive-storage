@@ -40,7 +40,7 @@ export default [
   {
     ...config,
     output: {
-      file: resolveFile('dist/index.js'),
+      file: resolveFile('dist/index.esm.js'),
       format: "es",
     },
   },

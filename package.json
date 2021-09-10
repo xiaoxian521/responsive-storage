@@ -2,11 +2,12 @@
   "name": "responsive-storage",
   "version": "1.0.5",
   "description": "基于Vue3.0的响应式本地存储",
-  "main": "dist/index.js",
+  "main": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "src",
-    "dist"
+    "dist/types",
+    "dist/index.esm.js"
   ],
   "scripts": {
     "dev": "rm -rf dist && rollup -w -c ./build/rollup.config.dev.js",
