@@ -1,6 +1,6 @@
 {
   "name": "responsive-storage",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "基于Vue3.0的响应式本地存储",
   "main": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",
