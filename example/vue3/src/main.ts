@@ -4,7 +4,7 @@ import App from "./App.vue";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 
-import Storage from "../../../src";
+import Storage from "../../../dist";
 
 const app = createApp(App);
 
