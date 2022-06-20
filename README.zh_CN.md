@@ -33,7 +33,7 @@ pnpm add responsive-storage -D
 
 - main.js
 ```js
-import Storage from "responsive-storage"
+import Storage from "responsive-storage";
 Vue.use(Storage, {
   // 必传
   version: 2, 
@@ -43,7 +43,7 @@ Vue.use(Storage, {
   memory: {
     starValue: Storage.getData("starValue", 'xx_') ?? 1
   }
-})
+});
 ```
 
 [点击查看具体用法](https://github.com/xiaoxian521/responsive-storage/tree/main/playgrounds/vue2) 
@@ -56,7 +56,7 @@ Vue.use(Storage, {
 import { createApp } from "vue";
 import App from "./App.vue";
 
-import Storage from "responsive-storage"
+import Storage from "responsive-storage";
 const app = createApp(App);
 
 app.use(Storage, {

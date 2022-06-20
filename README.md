@@ -17,7 +17,7 @@ English | [简体中文](./README.zh_CN.md)
 - ⚡ **Strong compatibility**: supports both `vue2` and `vue3`, no need to install additional dependencies
 - ⚡ **Fully tree-shaking**: Comes with Tree-shaking, only packages the imported code
 - 🧪 **Complete example**: Currently we have added `vue2`, `vue3` examples in the [playgrounds](https://github.com/xiaoxian521/responsive-storage/tree/main/playgrounds) folder , zero learning usage cost
-- 🦾 **Extremely Light**: The source code size is `4KB`, and the footprint of the package size in the project is only calculated in bits
+- 🦾 **Extremely Light**: The source code size is `1.76 KB`, and the footprint of the package size in the project is only calculated in bits
 
 ## 📦 install
 
@@ -33,7 +33,7 @@ pnpm add responsive-storage -D
 
 - main.js
 ````js
-import Storage from "responsive-storage"
+import Storage from "responsive-storage";
 Vue.use(Storage, {
   // must pass
   version: 2, 
@@ -43,7 +43,7 @@ Vue.use(Storage, {
   memory: {
     starValue: Storage.getData("starValue", 'xx_') ?? 1
   }
-})
+});
 ````
 
 [Click to view the specific usage](https://github.com/xiaoxian521/responsive-storage/tree/main/playgrounds/vue2)
@@ -56,7 +56,7 @@ Vue.use(Storage, {
 import { createApp } from "vue";
 import App from "./App.vue";
 
-import Storage from "responsive-storage"
+import Storage from "responsive-storage";
 const app = createApp(App);
 
 app.use(Storage, {
