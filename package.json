@@ -1,6 +1,6 @@
 {
   "name": "responsive-storage",
-  "version": "1.0.12",
+  "version": "2.0.0",
   "description": "Responsive local storage, supports vue2 and vue3",
   "files": [
     "dist"
