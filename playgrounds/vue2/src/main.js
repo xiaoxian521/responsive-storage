@@ -10,6 +10,7 @@ Vue.use(ElementUI)
 import Storage from "../../../dist"
 Vue.use(Storage, {
   version: 2,
+  // nameSpace: "test_",
   memory: {
     // starValue: Storage.getData("starValue", "test_") ?? 1
     starValue: Storage.getData("starValue") ?? 1

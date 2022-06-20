@@ -11,7 +11,7 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "element-ui": "^2.15.9",
-    "vue": "^2.6.14"
+    "vue": "2.6.14"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -22,7 +22,7 @@
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
     "serve": "^13.0.2",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "2.6.14"
   },
   "eslintConfig": {
     "root": true,
