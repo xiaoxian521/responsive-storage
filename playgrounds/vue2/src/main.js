@@ -8,6 +8,7 @@ import ElementUI from 'element-ui'
 Vue.use(ElementUI)
 
 import Storage from "../../../dist"
+// import Storage from "responsive-storage"
 Vue.use(Storage, {
   version: 2,
   // nameSpace: "test_",

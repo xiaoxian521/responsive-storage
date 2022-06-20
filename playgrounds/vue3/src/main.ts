@@ -5,6 +5,7 @@ import "./assets/reset.css";
 import "element-plus/dist/index.css";
 
 import Storage from "../../../dist";
+// import Storage from "responsive-storage";
 import ElementPlus from "element-plus";
 
 const app = createApp(App);

@@ -10,6 +10,7 @@ specifiers:
   element-ui: ^2.15.9
   eslint: ^7.32.0
   eslint-plugin-vue: ^8.0.3
+  responsive-storage: ^1.0.12
   serve: ^13.0.2
   vue: 2.6.14
   vue-template-compiler: 2.6.14
@@ -17,6 +18,7 @@ specifiers:
 dependencies:
   core-js: 3.23.1
   element-ui: 2.15.9_vue@2.6.14
+  responsive-storage: 1.0.12
   vue: 2.6.14
 
 devDependencies:
@@ -5847,6 +5849,10 @@ packages:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
+
+  /responsive-storage/1.0.12:
+    resolution: {integrity: sha512-3Tb/+twJcqC8pBhbUO8JCbxZbKMOCYEnDYy6pAPmeUo22KD/EKm65EDvlliIoCWdoU8d2rErrEkH1Dl5F7kglg==}
+    dev: false
 
   /restore-cursor/2.0.0:
     resolution: {integrity: sha512-6IzJLuGi4+R14vwagDHX+JrXmPVtPpn4mffDJ1UdR7/Edm87fl6yi8mMBIVvFtJaNTUvjughmW4hwLhRG7gC1Q==}
