@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@vitejs/plugin-vue': ^2.3.3
   element-plus: ^2.2.6
-  responsive-storage: ^1.0.12
+  responsive-storage: ^2.0.0
   typescript: ^4.6.4
   vite: ^2.9.12
   vue: ^3.2.37
@@ -11,7 +11,7 @@ specifiers:
 
 dependencies:
   element-plus: 2.2.6_vue@3.2.37
-  responsive-storage: 1.0.12
+  responsive-storage: 2.0.0
   vue: 3.2.37
 
 devDependencies:
@@ -569,8 +569,8 @@ packages:
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
 
-  /responsive-storage/1.0.12:
-    resolution: {integrity: sha512-3Tb/+twJcqC8pBhbUO8JCbxZbKMOCYEnDYy6pAPmeUo22KD/EKm65EDvlliIoCWdoU8d2rErrEkH1Dl5F7kglg==}
+  /responsive-storage/2.0.0:
+    resolution: {integrity: sha512-4pZbTlwDmJAbnZ0B93aQVfTOY58+LYwwQBGPDqAI89NbjnrgVdmqqemmzkfOSGNqFWWnCamq9moWASFk+oC2Fg==}
     dev: false
 
   /rollup/2.75.6:

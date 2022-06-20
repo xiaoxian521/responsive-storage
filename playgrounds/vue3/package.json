@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "element-plus": "^2.2.6",
-    "responsive-storage": "^1.0.12",
+    "responsive-storage": "^2.0.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {

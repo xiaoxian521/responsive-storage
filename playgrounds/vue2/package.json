@@ -11,7 +11,7 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "element-ui": "^2.15.9",
-    "responsive-storage": "^1.0.12",
+    "responsive-storage": "^2.0.0",
     "vue": "2.6.14"
   },
   "devDependencies": {
