@@ -1,9 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "module": "esnext",
-    "outDir": "es"
-  },
-  "include": ["./src/index.ts"],
-  "exclude": []
-}

@@ -1,178 +1,79 @@
-import { reactive, warn } from "vue";
-import type { App } from "vue";
+import { reactive } from "./convert";
+import { StorageOpts } from "./types";
 
-export declare interface ProxyStorage {
-  get(key: string): unknown;
-  set(Key: string, value: string): void;
-  remove(key: string): void;
-  clear(): void;
-}
+export default class Storage {
+  static _nameSpace = "rs-";
 
-export default class Storage implements ProxyStorage {
-  public nameSpace: string = "";
-  public options: object = {};
-  public typeMap: Map<unknown, unknown>;
-  public storage: object = {};
+  static _getStaticKey = (nameSpace: string, key: string) =>
+    `${nameSpace ?? this._nameSpace}${key}`;
 
-  // 获取key值
-  public _getKey = (key: string) => this.nameSpace + key;
+  static install(app: any, options: StorageOpts) {
+    const { nameSpace = this._nameSpace, memory } = options;
+    this.clearAll(nameSpace, memory);
+    return new Storage(app, options);
+  }
 
-  // 存储key带responsive的全部清空，恢复初始化状态，防止恶意串改
-  static clearAll(nameSpace: string = "responsive", options: object) {
-    Object.keys(options).forEach((key) => {
-      const lsKey: string = `${nameSpace}-${key}`;
-      if (Object.prototype.hasOwnProperty.call(window.localStorage, lsKey)) {
-        window.localStorage.removeItem(lsKey);
+  static clearAll(nameSpace: string, memory: object) {
+    Object.keys(memory).forEach(key => {
+      const alias: string = nameSpace + key;
+      if (Object.prototype.hasOwnProperty.call(window.localStorage, alias)) {
+        window.localStorage.removeItem(alias);
       }
     });
   }
 
-  // 初始化Storage
-  static install(app: App<Element>, nameSpace: string, options: object) {
-    if (typeof nameSpace === "object") {
-      options = nameSpace;
-      nameSpace = "responsive";
-    }
-    Storage.clearAll(nameSpace, options);
-    const instance = new Storage(app, nameSpace, options);
-    return instance;
+  static get(key: string) {
+    return JSON.parse(window.localStorage.getItem(key) as string);
   }
 
-  // 获取key对应的value
-  static getData(nameSpace: string = "responsive", key: string) {
-    const lsKey = `${nameSpace}-${key}`;
-    if (Object.prototype.hasOwnProperty.call(window.localStorage, lsKey)) {
-      let val: any = window.localStorage.getItem(lsKey);
-      try {
-        val = JSON.parse(val);
-      } catch (error) {
-        console.log(error, val);
-      }
-      return val;
-    }
+  static set(key: string, val: string) {
+    val = typeof val === "object" ? JSON.stringify(val) : val;
+    window.localStorage.setItem(key, val);
   }
 
-  public constructor(
-    app: App<Element>,
-    nameSpace: string = "responsive",
-    options: any = {}
-  ) {
-    const self = this;
-    this.nameSpace = `${nameSpace}-`;
-    this.options = options;
-
-    // 刷新页面取出本地storage
-    const cacheStorage = Object.keys(window.localStorage)
-      .filter((key) => new RegExp(`^${this.nameSpace}`).test(key))
-      .reduce(
-        (acc, key) =>
-          Object.assign(acc, {
-            [key.replace(this.nameSpace, "")]: window.localStorage[key],
-          }),
-        {}
+  static getData(key: string, nameSpace?: string) {
+    if (
+      Object.prototype.hasOwnProperty.call(
+        window.localStorage,
+        this._getStaticKey(nameSpace!, key)
+      )
+    )
+      return JSON.parse(
+        window.localStorage.getItem(
+          this._getStaticKey(nameSpace!, key)
+        ) as string
       );
+  }
 
-    // 每种数据类型的默认值
-    const keyMap: Array<any> = [
-      [String, ""],
-      [Boolean, false],
-      [Number, 0],
-      [Array, []],
-      [Object, {}],
-    ];
+  public constructor(app: any, options: StorageOpts) {
+    const that = Storage;
+    const { version = 3, nameSpace = that._nameSpace, memory } = options;
+    const _getKey = (key: string): string => nameSpace + key;
 
-    const map = (this.typeMap = new Map(keyMap));
+    /**
+     * Vue2 uses defineReactive to create responsive storage
+     * Vue3 uses reactive to create responsive storage
+     */
+    let _storage: any = version === 3 ? reactive(memory) : memory;
 
-    // 利用reactive创建响应式storage（关键）
-    let _storage: any = reactive(
-      (this.storage = {
-        // @ts-ignore
-        ...Object.keys(options).reduce((acc, key) => {
-          const { type, default: val } = options[key];
-          if (!type) {
-            warn("type of the field 'key' is required!");
-            return acc;
-          }
+    if (Object.keys(_storage).length === 0) console.warn("key cannot be empty");
 
-          return Object.assign(acc, {
-            [key]: val === undefined ? map.get(type) : val,
-          });
-        }, {}),
-        ...cacheStorage,
-      })
-    );
+    Object.keys(_storage).forEach(key => {
+      const val = _storage[key];
+      that.set(_getKey(key), val);
 
-    if (Object.keys(_storage).length === 0) {
-      warn("responsive key can not be empty empty!");
-    }
-
-    Object.keys(_storage).forEach((key) => {
-      try {
-        const val = _storage[key];
-        this.set(key, val);
-      } catch (e) {
-        console.log(e);
-      }
-
-      // 把_storage中key对应的value取值代理到localStorage中去
       Reflect.defineProperty(_storage, key, {
-        get: () => self.get(key),
-        set: (val) => self.set(key, val),
-        configurable: true,
+        get: () => that.get(_getKey(key)),
+        set: val => that.set(_getKey(key), val),
+        configurable: true
       });
+
+      if (version === 2) app.util.defineReactive(_storage, key, _storage[key]);
     });
 
-    // 代理实例
-    Reflect.defineProperty(app.config.globalProperties, "$storage", {
-      get: () => _storage,
-    });
-
-    Reflect.defineProperty(app.config.globalProperties, "$storager", {
-      get: () => self,
-    });
-
-    // @ts-ignore
-    app.storage = _storage;
-    // @ts-ignore
-    app.storager = self;
-  }
-
-  /** 暴露公共方法
-   * get      根据key获取value
-   * set      根据key设置value
-   * remove   根据key删除value
-   * clear    清空全部
-   */
-
-  public get(key: string) {
-    let val = window.localStorage.getItem(this._getKey(key));
-    try {
-      val = JSON.parse(val);
-    } catch (e) {
-      warn(e);
-    }
-    return val;
-  }
-
-  public set(key: string, val: string) {
-    try {
-      val = typeof val === "object" ? JSON.stringify(val) : val;
-      window.localStorage.setItem(this._getKey(key), val);
-    } catch (e) {
-      warn("storage setting fail, please check the value");
-    }
-  }
-
-  public remove(key: string) {
-    window.localStorage.removeItem(this._getKey(key));
-  }
-
-  public clear() {
-    Object.keys(this.storage).forEach((key) => {
-      const lsKey = this._getKey(key);
-      if (Object.prototype.hasOwnProperty.call(window.localStorage, lsKey)) {
-        window.localStorage.removeItem(lsKey);
-      }
+    let _target = version === 3 ? app.config.globalProperties : app.prototype;
+    Reflect.defineProperty(_target, "$storage", {
+      get: () => _storage
     });
   }
 }
