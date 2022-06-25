@@ -22,9 +22,9 @@ English | [简体中文](./README.zh_CN.md)
 ## 📦 install
 
 ```bash
-npm install responsive-storage -D
+npm install responsive-storage
 or
-pnpm add responsive-storage -D
+pnpm add responsive-storage
 ````
 
 ## 🦄 Usage
