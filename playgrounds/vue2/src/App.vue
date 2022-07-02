@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <el-tooltip content="Vue3版本" placement="top" effect="light">
-      <p>Vue3 Version</p>
+    <el-tooltip content="Vue2版本" placement="top" effect="light">
+      <p>Vue2 Version</p>
     </el-tooltip>
     <el-tooltip
       content="请打开本地浏览器的LocalStorage查看rs-starValue对应值的变化并观察页面中star的变化"
