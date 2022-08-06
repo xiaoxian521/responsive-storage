@@ -9,7 +9,7 @@ export default class Storage {
 
   static install(app: any, options: StorageOpts) {
     const { nameSpace = this._nameSpace, memory } = options;
-    this.clearAll(nameSpace, memory);
+    memory && this.clearAll(nameSpace, memory);
     return new Storage(app, options);
   }
 
