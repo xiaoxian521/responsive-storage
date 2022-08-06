@@ -56,7 +56,7 @@ export default class Storage {
      */
     let _storage: any = version === 3 ? reactive(memory) : memory;
 
-    if (Object.keys(_storage).length === 0) console.warn("key cannot be empty");
+    if (_storage && Object.keys(_storage).length === 0) console.warn("key cannot be empty");
 
     Object.keys(_storage).forEach(key => {
       const val = _storage[key];
