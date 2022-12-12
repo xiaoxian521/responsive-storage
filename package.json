@@ -33,6 +33,9 @@
     "type": "git",
     "url": "https://github.com/xiaoxian521/responsive-storage"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "bugs": {
     "url": "https://github.com/xiaoxian521/responsive-storage/issues"
   },
