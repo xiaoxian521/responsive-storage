@@ -10,7 +10,8 @@
     "dev": "tsup --watch",
     "dev:2": "cd playgrounds/vue2/ && pnpm dev",
     "dev:3": "cd playgrounds/vue3/ && pnpm dev",
-    "lint": "prettier --write \"src/*.ts\""
+    "lint": "prettier --write \"src/*.ts\"",
+    "pub": "pub"
   },
   "keywords": [
     "Vue2",
@@ -41,6 +42,7 @@
   },
   "homepage": "https://github.com/xiaoxian521/responsive-storage/tree/main/#readme",
   "devDependencies": {
+    "@pureadmin/release": "^1.0.0",
     "@types/node": "^18.0.0",
     "prettier": "^2.7.1",
     "tsup": "^6.1.2",

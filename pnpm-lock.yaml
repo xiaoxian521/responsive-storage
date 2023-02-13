@@ -1,6 +1,7 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
+  '@pureadmin/release': ^1.0.0
   '@types/node': ^18.0.0
   prettier: ^2.7.1
   tsup: ^6.1.2
@@ -8,6 +9,7 @@ specifiers:
   vue: ^3.2.37
 
 devDependencies:
+  '@pureadmin/release': 1.0.0
   '@types/node': 18.0.0
   prettier: 2.7.1
   tsup: 6.1.2_typescript@4.7.4
@@ -56,6 +58,11 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+    dev: true
+
+  /@pureadmin/release/1.0.0:
+    resolution: {integrity: sha512-cFXev9X+TQNmpb8E8agD53ZfL5DCYpY25SPpLUXo42Twa62vmJckc+xqh95r4tvgMi0eqUEFRuiSHr1oS3pHmQ==}
+    hasBin: true
     dev: true
 
   /@types/node/18.0.0:
