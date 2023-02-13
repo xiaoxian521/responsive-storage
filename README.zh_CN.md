@@ -70,4 +70,4 @@ app.use(Storage, {
 
 ## 许可证
 
-[MIT © xiaoxian521-2022](./LICENSE)
+[MIT © xiaoxian521-latest](./LICENSE)
